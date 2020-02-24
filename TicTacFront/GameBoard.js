@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {View, StyleSheet, Dimensions, Text} from "react-native";
 
 import Buttons from "./Buttons";
+import Online from "./Online";
 const width = Dimensions.get("window").width * 0.85;
 
 export default class GameBoard extends Component {
@@ -15,11 +16,19 @@ export default class GameBoard extends Component {
             message: ""
         }
         this.gameOver = this.gameOver.bind(this);
+        this.changeMessage = this.changeMessage.bind(this);
     }
 
     gameOver(message) {
         this.setState({
             isOver: true,
+            message
+        })
+    }
+
+    changeMessage(message) {
+        this.setState({
+            isOver: false,
             message
         })
     }
@@ -40,7 +49,7 @@ export default class GameBoard extends Component {
                     <View style = {styles.barVert}/>
                 </View>
 
-                <Buttons gameOver = {this.gameOver}/>
+                <Online changeMessage = {this.changeMessage} gameOver = {this.gameOver}/>
             </View>
             </React.Fragment>
         );
