@@ -1,13 +1,34 @@
 import React, {Component} from "react";
-import {View, StyleSheet, Dimensions} from "react-native";
+import {View, StyleSheet, Dimensions, Text} from "react-native";
 
 import Buttons from "./Buttons";
 const width = Dimensions.get("window").width * 0.85;
 
 export default class GameBoard extends Component {
 
+
+    constructor() {
+        super();
+
+        this.state = {
+            isOver: false,
+            message: ""
+        }
+        this.gameOver = this.gameOver.bind(this);
+    }
+
+    gameOver(message) {
+        this.setState({
+            isOver: true,
+            message
+        })
+    }
+
     render() {
         return(
+
+            <React.Fragment>
+            <Text style = {{fontSize: width * 0.2}}>{this.state.message}</Text>
             <View style = {styles.container}>
                 <View style = {styles.barCont}>
                     <View style = {styles.barHor}/>
@@ -19,8 +40,9 @@ export default class GameBoard extends Component {
                     <View style = {styles.barVert}/>
                 </View>
 
-                <Buttons/>
+                <Buttons gameOver = {this.gameOver}/>
             </View>
+            </React.Fragment>
         );
     }
 }
