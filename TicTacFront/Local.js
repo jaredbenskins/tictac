@@ -17,7 +17,7 @@ export default class Local extends Component{
         }
     }
 
-    pressed(column, row) {
+    async pressed(column, row) {
         if(this.state.isOver) {return}
         var newArr = this.state.tracker;
         if(newArr[column][row] != "") {
@@ -25,7 +25,7 @@ export default class Local extends Component{
         }
         const fill = this.state.Xturn ? "X" : "O";
         newArr[column][row] = fill;
-        this.setState({
+        await this.setState({
             tracker: newArr,
             Xturn: !this.state.Xturn,
             moves: this.state.moves += 1
@@ -37,7 +37,9 @@ export default class Local extends Component{
         }else if(this.state.moves >= 9) {
             this.props.gameOver("its a tie");
         }else {
-            return;
+            const message = this.state.Xturn ? "X's Turn" : "O's Turn";
+            this.props.changeMessage(message);
+            
         }
         
     }
@@ -58,6 +60,7 @@ export default class Local extends Component{
             return false;
         }
     }
+
 
     render() {
         return(

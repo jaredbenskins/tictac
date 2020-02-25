@@ -69,11 +69,10 @@ export default class Online extends Component{
             const turn = player.type === "X" ? true : false;
             this.setState({playerType: player.type, isTurn: turn});
             this.props.changeMessage(this.state.message);
-            
         });
 
         this.socket.on("isReady", () => {
-            const message = this.state.isTurn ? "your turn" : "oponennts turn";
+            const message = this.state.isTurn ? "your turn" : "opponents turn";
             this.setState({isReady: true, message});
             this.props.changeMessage(this.state.message);
         });

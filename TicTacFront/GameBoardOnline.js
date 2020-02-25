@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {View, StyleSheet, Dimensions, Text} from "react-native";
+import {View, StyleSheet, Dimensions, Text, TouchableOpacity} from "react-native";
 
 import Online from "./Online";
 import Bars from "./Bars"
@@ -36,11 +36,17 @@ export default class GameBoardOnline extends Component {
         return(
 
             <View style = {styles.mainCont}>
-            <Text style = {{fontSize: width * 0.2}}>{this.state.message}</Text>
+            <Text style = {{fontSize: width * 0.1, marginTop: width*0.3}}>{this.state.message}</Text>
             <View style = {styles.container}>
                 <Bars/>
                 <Online changeMessage = {this.changeMessage} gameOver = {this.gameOver}/>
             </View>
+            {this.state.isOver ? 
+            <View style = {styles.buttonsContainer}>
+                <TouchableOpacity style = {styles.buttons} onPress = {() => this.props.navigation.goBack()}><Text>Menu</Text></TouchableOpacity>
+                <TouchableOpacity style = {styles.buttons} onPress = {() => this.props.navigation.replace("Online")}><Text>Play Again</Text></TouchableOpacity>
+            </View>
+            : <View></View>}
             </View>
         );
     }
@@ -49,12 +55,27 @@ export default class GameBoardOnline extends Component {
 const styles = StyleSheet.create({
     mainCont: {
         flex: 1, 
-        justifyContent: "center", 
         alignItems: "center",
         backgroundColor: "white"
     },
     container: {
       width: width,
-      height: width
+      height: width,
+      marginTop: width*0.1
     },
+    buttonsContainer: {
+        width: width,
+        marginTop: width * 0.1,
+        flexDirection: "row",
+        justifyContent: "space-between"
+    },
+    buttons: {
+        width: width*0.48, 
+        height: width*0.09,
+        backgroundColor: "red",
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 17
+
+    }
   });
