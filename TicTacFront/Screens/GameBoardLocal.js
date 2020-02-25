@@ -1,11 +1,12 @@
 import React, {Component} from "react";
 import {View, StyleSheet, Dimensions, Text, TouchableOpacity} from "react-native";
 
-import Local from "./Local";
-import Bars from "./Bars"
+import Local from "../Components/Local";
+import Bars from "../Components/Bars";
 const width = Dimensions.get("window").width * 0.85;
 
 export default class GameBoardOnline extends Component {
+    //Online Game Board component
 
     constructor() {
         super();
@@ -19,6 +20,7 @@ export default class GameBoardOnline extends Component {
     }
 
     gameOver(message) {
+        //change label to display winner
         this.setState({
             isOver: true,
             message
@@ -26,6 +28,7 @@ export default class GameBoardOnline extends Component {
     }
 
     changeMessage(message) {
+        //Change label when turn switches
         this.setState({
             isOver: false,
             message

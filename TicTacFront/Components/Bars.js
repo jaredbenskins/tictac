@@ -4,6 +4,7 @@ import {View, StyleSheet, Dimensions} from "react-native";
 const width = Dimensions.get("window").width * 0.85;
 
 export default () => (
+    //Component to generate the black bars for board
     <React.Fragment>
         <View style = {styles.barCont}>
             <View style = {styles.barHor}/>

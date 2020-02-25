@@ -3,9 +3,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import React from "react";
 import {Dimensions} from "react-native"
 
-import Home from "./Home";
-import GameBoardOnline from "./GameBoardOnline";
-import GameBoardLocal from "./GameBoardLocal";
+import Home from "./Screens/Home";
+import GameBoardOnline from "./Screens/GameBoardOnline";
+import GameBoardLocal from "./Screens/GameBoardLocal";
 const width = Dimensions.get("window").width;
 
 
@@ -26,7 +26,7 @@ function App() {
       >
         <Stack.Screen name="Home" component={Home} options = {{title: "Tic Tac Toe"}} />
         <Stack.Screen name="Local" component={GameBoardLocal} options = {{title: "Tic Tac Toe"}} />
-        <Stack.Screen name="Online" component={GameBoardOnline} options = {{title: "Tic Tac Toe", headerLeft: null}} />
+        <Stack.Screen name="Online" component={GameBoardOnline} options = {{title: "Tic Tac Toe"}} />
       </Stack.Navigator>
     </NavigationContainer>
   );

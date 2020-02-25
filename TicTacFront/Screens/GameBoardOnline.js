@@ -1,11 +1,12 @@
 import React, {Component} from "react";
 import {View, StyleSheet, Dimensions, Text, TouchableOpacity} from "react-native";
 
-import Online from "./Online";
-import Bars from "./Bars"
+import Online from "../Components/Online";
+import Bars from "../Components/Bars";
 const width = Dimensions.get("window").width * 0.85;
 
 export default class GameBoardOnline extends Component {
+    //Component for Online Game screen
 
     constructor() {
         super();
@@ -19,6 +20,7 @@ export default class GameBoardOnline extends Component {
     }
 
     gameOver(message) {
+        //Change label to display winner when game is over
         this.setState({
             isOver: true,
             message
@@ -26,6 +28,7 @@ export default class GameBoardOnline extends Component {
     }
 
     changeMessage(message) {
+        //change label when user turn switches
         this.setState({
             isOver: false,
             message
@@ -43,8 +46,8 @@ export default class GameBoardOnline extends Component {
             </View>
             {this.state.isOver ? 
             <View style = {styles.buttonsContainer}>
-                <TouchableOpacity style = {styles.buttons} onPress = {() => this.props.navigation.goBack()}><Text>Menu</Text></TouchableOpacity>
-                <TouchableOpacity style = {styles.buttons} onPress = {() => this.props.navigation.replace("Online")}><Text>Play Again</Text></TouchableOpacity>
+                <TouchableOpacity style = {styles.buttons} onPress = {() => this.props.navigation.goBack()}><Text>Menu</Text></TouchableOpacity> 
+                <TouchableOpacity style = {styles.buttons} onPress = {() => this.props.navigation.replace("Online")}><Text>Play Again</Text></TouchableOpacity> 
             </View>
             : <View></View>}
             </View>

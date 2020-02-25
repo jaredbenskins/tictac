@@ -3,13 +3,14 @@ import {View, Text, TouchableOpacity, StyleSheet, Dimensions} from "react-native
 
 const width = Dimensions.get("window").width;
 export default class Home extends Component {
+    //component for Home screen
 
     render() {
         return(
             <View style = {{flex: 1, alignItems: "center", justifyContent: "center"}}>
                 <Text style = {{marginBottom: width * 0.2, fontSize: width * 0.1}}>Select Game Mode</Text>
                 <View style = {styles.buttCont}>
-                    <TouchableOpacity onPress = {() => this.props.navigation.navigate("Local")} style = {styles.button}><Text>Local</Text></TouchableOpacity>
+                    <TouchableOpacity onPress = {() => this.props.navigation.navigate("Local")} style = {styles.button}><Text>Local</Text></TouchableOpacity> 
                     <TouchableOpacity onPress = {() => this.props.navigation.navigate("Online")}  style = {styles.button}><Text>Online</Text></TouchableOpacity>
                 </View>
             </View>
