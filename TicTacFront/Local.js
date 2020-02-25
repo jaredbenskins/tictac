@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, Dimensions, TouchableOpacity} from "react-native
 
 const width = Dimensions.get("window").width * 0.85;
 
-export default class Buttons extends Component{
+export default class Local extends Component{
 
     constructor() {
         super();

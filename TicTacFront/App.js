@@ -1,16 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View, Dimensions} from 'react-native';
-import GameBoard from "./GameBoard"
 
-const width = Dimensions.get("window").width;
+import MainNav from "./Nav";
 
 export default function App() {
   return (
-    <View style = {{flex: 1, justifyContent: "center", alignItems: "center"}}>
-
-      <GameBoard/>
     
-    </View>
+
+      <MainNav/>
+    
 
   );
 }

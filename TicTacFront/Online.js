@@ -47,7 +47,6 @@ export default class Online extends Component{
         
     }
 
-
     checkGame(turn, column, row) {
         const checkArr = this.state.tracker;
 
@@ -64,9 +63,8 @@ export default class Online extends Component{
         }
     }
 
-
     componentDidMount() {
-        this.socket = io("http://192.168.1.247:4000");
+        this.socket = io("http://172.31.3.68:4000");
         this.socket.on("sendPlayer", (player) => {
             const turn = player.type === "X" ? true : false;
             this.setState({playerType: player.type, isTurn: turn});
