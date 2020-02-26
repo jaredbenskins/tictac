@@ -18,7 +18,7 @@ export default class Online extends Component{
             playerType: "",     //Tracks whether user is an X or an O
             isTurn: false,      //keeps track of whos turn it is
             isReady: false,     //Checks if both users have entered a game
-            message: "waiting for players"
+
         }
     }
 
@@ -37,7 +37,8 @@ export default class Online extends Component{
             moves: this.state.moves += 1
         });
 
-        this.socket.emit("playerWent", {updatedArr: newArr}); //Emit to server that player went and send update Array
+        this.props.changeMessage("opponents turn")
+        this.socket.emit("playerWent", {updatedArr: newArr}); //Emit to server that player went and send updated Array
 
         //Check to see if current player won
         if(this.checkGame(this.state.playerType, column, row)) {
@@ -67,28 +68,27 @@ export default class Online extends Component{
         }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         this.socket = io("http://localhost:4000"); //Connect to socket.io
-        this.socket.on("sendPlayer", (player) => {  //Handle info on player type from server
+        this.socket.on("sendPlayer", async (player) => {  //Handle info on player type from server
             const turn = player.type === "X" ? true : false;
-            this.setState({playerType: player.type, isTurn: turn});
-            this.props.changeMessage(this.state.message);
+            await this.setState({playerType: player.type, isTurn: turn});
         });
 
-        this.socket.on("isReady", () => {           //Handle that both players are ready from server
+        this.socket.on("isReady", async () => {           //Handle that both players are ready from server
             const message = this.state.isTurn ? "your turn" : "opponents turn";
-            this.setState({isReady: true, message});
-            this.props.changeMessage(this.state.message);
+            await this.setState({isReady: true});
+            this.props.changeMessage(message);
         });
 
-        this.socket.on("updateBoard", (data) => {   //handle the updated board array from serevr
-            this.setState({tracker: data.updatedArr, isTurn: true, message: "your turn"});
-            this.props.changeMessage(this.state.message);
+        this.socket.on("updateBoard", async (data) => {   //handle the updated board array from serevr
+            await this.setState({tracker: data.updatedArr, isTurn: true});
+            this.props.changeMessage("Your turn");
         });
 
-        this.socket.on("endGame", (data) => {       //Handle the end of the game
-            this.setState({isOver: true, message: data});
-            this.props.gameOver(this.state.message);
+        this.socket.on("endGame", async (data) => {       //Handle the end of the game
+            await this.setState({isOver: true});
+            this.props.gameOver(data);
         });
 
     }

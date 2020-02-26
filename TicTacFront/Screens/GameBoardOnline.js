@@ -13,7 +13,7 @@ export default class GameBoardOnline extends Component {
 
         this.state = {
             isOver: false,
-            message: ""
+            message: "Waiting for players..."
         }
         this.gameOver = this.gameOver.bind(this);
         this.changeMessage = this.changeMessage.bind(this);
